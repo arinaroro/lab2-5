@@ -1,0 +1,28 @@
+const readln = require("readline-sync");							// подключаем интерфейс чтения данных
+
+class Es_binary{
+		
+  constructor(name_file) {
+        this.readln = require("readline-sync");
+        this._es = require(name_file);								// проверяем наличие файла
+        this.title = this._es.title;								// берём title из data.json
+        this._map = new Map();
+        Object
+            .entries(this._es.dict); 								// преобразуем es в массив массивов 
+  }
+  dialog = function()  {
+    let post = Object.keys(this._es.dict)[0]; 						// стартуем с первого вопроса
+    while (true) {
+        console.log("Прошлый выбор ", '=>', post); 					// печатаем текущее положение
+        let menu = this._es.dict[post]; 							// узнаём варианты ответов
+        if (typeof menu == 'undefined') return console.log('Выбор сделан.','\n',"Вам подойдёт: ", post); // если это листок дерева
+        if (menu.length == 0) return console.log('Нет вариантов.');
+        menu.unshift('Выход'); 										// добавим пункт меню для выхода    
+        menu.forEach((item,i) => console.log(`[${i}] ${item}?`)); 	// печатаем варианты
+        let answer = readln.questionInt("Ваш выбор ? "); 			// читаем ответ с консоли
+        if (answer == 0) return console.log('Отказ от выбора');
+        post = menu[answer];										// выводим ответы в мен
+    };
+  }
+}
+module.exports.Esb = Es_binary; // декларируем публичное имя

@@ -1,0 +1,8 @@
+const Es = require('./es-module').Esb; 	// подключаем модуль с ЭС
+let obj_es = new Es('./data.json'); 	// создаём объект
+
+console.log(obj_es.title); 				// выводи title в консоль
+obj_es.dialog(); 						// организуем диалог
+
+console.log("Система завершила работу.");
+
